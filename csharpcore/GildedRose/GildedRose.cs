@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.VisualBasic;
+using System.Collections.Generic;
 
 namespace GildedRoseKata;
 
@@ -13,76 +14,128 @@ public class GildedRose
 
     public void UpdateQuality()
     {
-        for (var i = 0; i < _items.Count; i++)
+        foreach (var item in _items)
         {
-            if (_items[i].Name != "Aged Brie" && _items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+            var name = item.Name.ToLower();
+
+            if (name.Contains("sulfuras"))
             {
-                if (_items[i].Quality > 0)
-                {
-                    if (_items[i].Name != "Sulfuras, Hand of Ragnaros")
-                    {
-                        _items[i].Quality = _items[i].Quality - 1;
-                    }
-                }
+                LegendaryUpdate(item);
             }
+
+            else if (name.Contains("aged"))
+            {
+                AgedUpdate(item);
+            }
+
+            else if (name.Contains("conjured"))
+            {
+                ConjuredUpdate(item);
+            } 
+            
+            else if (name.Contains("backstage passes"))
+            {
+                BackstagePassesUpdate(item);
+            }
+
             else
             {
-                if (_items[i].Quality < 50)
-                {
-                    _items[i].Quality = _items[i].Quality + 1;
-
-                    if (_items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
-                    {
-                        if (_items[i].SellIn < 11)
-                        {
-                            if (_items[i].Quality < 50)
-                            {
-                                _items[i].Quality = _items[i].Quality + 1;
-                            }
-                        }
-
-                        if (_items[i].SellIn < 6)
-                        {
-                            if (_items[i].Quality < 50)
-                            {
-                                _items[i].Quality = _items[i].Quality + 1;
-                            }
-                        }
-                    }
-                }
+                OrdinaryUpdate(item);
             }
+        }
+    }
 
-            if (_items[i].Name != "Sulfuras, Hand of Ragnaros")
+    private void LegendaryUpdate(Item item)
+    {
+        item.SellIn = item.SellIn;
+        item.Quality = item.Quality;
+    }
+
+    private void AgedUpdate(Item item)
+    {
+        SellInUpdate(item);
+        if (item.SellIn < 0)
+        {
+            QualityIncrease(item, 2);
+        }
+        else
+        {
+            QualityIncrease(item);
+        }
+    }
+
+    private void ConjuredUpdate(Item item)
+    {
+        SellInUpdate(item);
+        if (item.SellIn < 0)
+        {
+            QualityDecrease(item, 4);
+        }
+        else
+        {
+            QualityDecrease(item, 2);
+        }
+    }
+
+    private void BackstagePassesUpdate(Item item)
+    {
+        SellInUpdate(item);
+        if (item.SellIn < 0)
+        {
+            item.Quality = 0;
+        }
+        else if (item.SellIn < 5)
+        {
+            QualityIncrease(item, 3);
+        }
+        else if (item.SellIn < 10)
+        {
+            QualityIncrease(item, 2);
+        }
+        else
+        {
+            QualityIncrease(item);
+        }
+    }
+
+    private void OrdinaryUpdate(Item item)
+    {
+        SellInUpdate(item);
+        if (item.SellIn < 0)
+        {
+            QualityDecrease(item, 2);
+        }
+        else
+        {
+            QualityDecrease(item);
+        }
+    }
+
+    private void SellInUpdate(Item item)
+    {
+            item.SellIn -= 1;
+    }
+
+    private void QualityDecrease(Item item, int malus = 1)
+    {
+        if (item.Quality > 0)
+        {
+            item.Quality -= malus;
+            if (item.Quality < 0)
             {
-                _items[i].SellIn = _items[i].SellIn - 1;
+                item.Quality = 0;
             }
+        }
+    }
 
-            if (_items[i].SellIn < 0)
+    private void QualityIncrease(Item item, int bonus = 1)
+    {
+        if (item.Quality < 50)
+        {
+            item.Quality += bonus;
+            if (item.Quality > 50)
             {
-                if (_items[i].Name != "Aged Brie")
-                {
-                    if (_items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
-                    {
-                        if (_items[i].Quality > 0)
-                        {
-                            if (_items[i].Name != "Sulfuras, Hand of Ragnaros")
-                            {
-                                _items[i].Quality = _items[i].Quality - 1;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        _items[i].Quality = _items[i].Quality - _items[i].Quality;
-                    }
-                }
-                else
-                {
-                    if (_items[i].Quality < 50)
-                    {
-                        _items[i].Quality = _items[i].Quality + 1;
-                    }
-                }
+                item.Quality = 50;
             }
         }
     }
