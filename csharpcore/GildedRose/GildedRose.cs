@@ -6,7 +6,7 @@ namespace GildedRoseKata;
 public class GildedRose
 {
     private readonly IList<Item> _items;
-    private Operations _operations;
+    private readonly Operations _operations;
 
 
     public GildedRose(IList<Item> items)
