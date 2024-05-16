@@ -90,4 +90,52 @@ public class GildedRoseTest
         Assert.That(items[0].Quality, Is.EqualTo(80));
         Assert.That(items[0].SellIn, Is.EqualTo(5));
     }
+
+    // Backstages passes increase (sellIn > 10)
+    [Test]
+    public void BackstagePassesIncrease() 
+    {
+        var items = new List<Item> { new Item { Name = "Backstage passes", SellIn = 15, Quality = 10 } };
+        var app = new GildedRose(items);
+
+        app.UpdateQuality();
+
+        Assert.That(items[0].Quality, Is.EqualTo(11));
+    }
+
+    // Backstage passes increase twice (SellIn <= 10)
+    [Test]
+    public void BackstagePassesIncreaseTwice()
+    {
+        var items = new List<Item> { new Item { Name = "Backstage passes", SellIn = 10, Quality = 10 } };
+        var app = new GildedRose(items);
+
+        app.UpdateQuality();
+
+        Assert.That(items[0].Quality, Is.EqualTo(12));
+    }
+
+    // Backstage passes increase third (SellIne <= 5)
+    [Test]
+    public void BackstagePassesIncreaseThird()
+    {
+        var items = new List<Item> { new Item { Name = "Backstage passes", SellIn = 5, Quality = 10 } };
+        var app = new GildedRose(items);
+
+        app.UpdateQuality();
+
+        Assert.That(items[0].Quality, Is.EqualTo(13));
+    }
+
+    // Conjured item decrease twice as normal
+    [Test]
+    public void ConjuredItemQualityDecrease()
+    {
+        var items = new List<Item> { new Item { Name = "Conjured love potion", SellIn = 5, Quality = 10 } };
+        var app = new GildedRose(items);
+
+        app.UpdateQuality();
+
+        Assert.That(items[0].Quality, Is.EqualTo(8));
+    }
 }
