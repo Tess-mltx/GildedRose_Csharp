@@ -6,13 +6,11 @@ namespace GildedRoseKata;
 public class GildedRose
 {
     private readonly IList<Item> _items;
-    private readonly Operations _operations;
 
 
     public GildedRose(IList<Item> items)
     {
         _items = items;
-        _operations = new Operations();
     }
 
     public void UpdateQuality()
@@ -23,94 +21,28 @@ public class GildedRose
 
             if (name.Contains("sulfuras"))
             {
-                LegendaryUpdate(item);
+                LegendaryItem.UpdateQuality(item);
             }
 
             else if (name.Contains("aged"))
             {
-                AgedUpdate(item);
+                AgedItem.UpdateQuality(item);
             }
 
             else if (name.Contains("conjured"))
             {
-                ConjuredUpdate(item);
+                ConjuredItem.UpdateQuality(item);
             } 
             
             else if (name.Contains("backstage passes"))
             {
-                BackstagePassesUpdate(item);
+                BackstagePassesItem.UpdateQuality(item);
             }
 
             else
             {
-                OrdinaryUpdate(item);
+                OrdinaryItem.UpdateQuality(item);
             }
-        }
-    }
-
-    private void LegendaryUpdate(Item item)
-    {
-        item.SellIn = item.SellIn;
-        item.Quality = item.Quality;
-    }
-
-    private void AgedUpdate(Item item)
-    {
-        _operations.SellInUpdate(item);
-        if (item.SellIn < 0)
-        {
-            _operations.QualityIncrease(item, 2);
-        }
-        else
-        {
-            _operations.QualityIncrease(item);
-        }
-    }
-
-    private void ConjuredUpdate(Item item)
-    {
-        _operations.SellInUpdate(item);
-        if (item.SellIn < 0)
-        {
-            _operations.QualityDecrease(item, 4);
-        }
-        else
-        {
-            _operations.QualityDecrease(item, 2);
-        }
-    }
-
-    private void BackstagePassesUpdate(Item item)
-    {
-        _operations.SellInUpdate(item);
-        if (item.SellIn < 0)
-        {
-            item.Quality = 0;
-        }
-        else if (item.SellIn < 5)
-        {
-            _operations.QualityIncrease(item, 3);
-        }
-        else if (item.SellIn < 10)
-        {
-            _operations.QualityIncrease(item, 2);
-        }
-        else
-        {
-            _operations.QualityIncrease(item);
-        }
-    }
-
-    private void OrdinaryUpdate(Item item)
-    {
-        _operations.SellInUpdate(item);
-        if (item.SellIn < 0)
-        {
-            _operations.QualityDecrease(item, 2);
-        }
-        else
-        {
-            _operations.QualityDecrease(item);
         }
     }
 }

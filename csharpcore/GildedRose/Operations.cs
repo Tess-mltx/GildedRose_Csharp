@@ -1,20 +1,13 @@
-﻿using GildedRoseKata;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GildedRoseKata
+﻿namespace GildedRoseKata
 {
     public class Operations
     {
-        public void SellInUpdate(Item item)
+        public static void SellInUpdate(Item item)
         {
             item.SellIn -= 1;
         }
 
-        public void QualityDecrease(Item item, int malus = 1)
+        public static void QualityDecrease(Item item, int malus = 1)
         {
             if (item.Quality > 0)
             {
@@ -26,7 +19,7 @@ namespace GildedRoseKata
             }
         }
 
-        public void QualityIncrease(Item item, int bonus = 1)
+        public static void QualityIncrease(Item item, int bonus = 1)
         {
             if (item.Quality < 50)
             {
