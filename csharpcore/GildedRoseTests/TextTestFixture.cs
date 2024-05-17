@@ -9,7 +9,6 @@ public static class TextTestFixture
     public static void Main(string[] args)
     {
         Console.WriteLine("OMGHAI!");
-
         var items = new List<Item>{
             new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20},
             new Item {Name = "Aged Brie", SellIn = 2, Quality = 0},
@@ -34,7 +33,6 @@ public static class TextTestFixture
                 SellIn = 5,
                 Quality = 49
             },
-            // this conjured item does not work properly yet
             new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
         };
 
