@@ -14,7 +14,7 @@ namespace GildedRoseTests
         [Test]
         public void LegendaryItemImmutable()
         {
-            var items = new List<Item> { new Item { Name = "Sulfuras", SellIn = 5, Quality = 80 } };
+            var items = new List<Item> { new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 5, Quality = 80 } };
             var app = new GildedRose(items);
 
             app.UpdateQuality();

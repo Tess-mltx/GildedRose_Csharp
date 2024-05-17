@@ -35,7 +35,7 @@ public class GildedRoseTest
     [Test]
     public void MaxQualityIsFifty() 
     {
-        var items = new List<Item> { new Item { Name = "Aged brie", SellIn = 2, Quality = 50 } };
+        var items = new List<Item> { new Item { Name = "Aged Brie", SellIn = 2, Quality = 50 } };
         var app = new GildedRose(items);
 
         for (int i = 0; i < 2; i++)

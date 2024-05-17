@@ -14,7 +14,7 @@ namespace GildedRoseTests
         [Test]
         public void DecreaseTwice()
         {
-            var items = new List<Item> { new Item { Name = "Conjured love potion", SellIn = 5, Quality = 10 } };
+            var items = new List<Item> { new Item { Name = "Conjured Mana Cake", SellIn = 5, Quality = 10 } };
             var app = new GildedRose(items);
 
             app.UpdateQuality();
@@ -26,7 +26,7 @@ namespace GildedRoseTests
         [Test]
         public void DecreaseTwiceAfterSellIn()
         {
-            var items = new List<Item> { new Item { Name = "Conjured love potion", SellIn = 0, Quality = 10 } };
+            var items = new List<Item> { new Item { Name = "Conjured Mana Cake", SellIn = 0, Quality = 10 } };
             var app = new GildedRose(items);
 
             app.UpdateQuality();

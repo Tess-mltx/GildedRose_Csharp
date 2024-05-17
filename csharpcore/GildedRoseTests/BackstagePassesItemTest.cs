@@ -14,7 +14,7 @@ namespace GildedRoseTests
         [Test]
         public void Increase()
         {
-            var items = new List<Item> { new Item { Name = "Backstage passes", SellIn = 15, Quality = 10 } };
+            var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 15, Quality = 10 } };
             var app = new GildedRose(items);
 
             app.UpdateQuality();
@@ -26,7 +26,7 @@ namespace GildedRoseTests
         [Test]
         public void IncreaseTwice()
         {
-            var items = new List<Item> { new Item { Name = "Backstage passes", SellIn = 10, Quality = 10 } };
+            var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 10, Quality = 10 } };
             var app = new GildedRose(items);
 
             app.UpdateQuality();
@@ -38,7 +38,7 @@ namespace GildedRoseTests
         [Test]
         public void IncreaseThird()
         {
-            var items = new List<Item> { new Item { Name = "Backstage passes", SellIn = 5, Quality = 10 } };
+            var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 5, Quality = 10 } };
             var app = new GildedRose(items);
 
             app.UpdateQuality();
@@ -50,7 +50,7 @@ namespace GildedRoseTests
         [Test]
         public void SellInPassed()
         {
-            var items = new List<Item> { new Item { Name = "Backstage passes", SellIn = 0, Quality = 10 } };
+            var items = new List<Item> { new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 0, Quality = 10 } };
             var app = new GildedRose(items);
 
             app.UpdateQuality();
